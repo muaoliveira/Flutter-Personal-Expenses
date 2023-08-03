@@ -1,13 +1,32 @@
+// ignore_for_file: prefer_const_constructors
+//import 'dart:io';
 import 'package:flutter/material.dart';
 
-class TransactionForms extends StatelessWidget {
-
-  final titleController = TextEditingController();
-  final valueController = TextEditingController();
+class TransactionForms extends StatefulWidget {
 
   final void Function(String, double) onSubmit;
 
   TransactionForms(this.onSubmit);
+
+  @override
+  State<TransactionForms> createState() => _TransactionFormsState();
+}
+
+class _TransactionFormsState extends State<TransactionForms> {
+  final titleController = TextEditingController();
+
+  final valueController = TextEditingController();
+
+  _submitForm() {
+    final title = titleController.text;
+    final value = double.tryParse(valueController.text) ?? 0.0;
+
+    if(title.isEmpty || value <= 0.0) {
+      return;
+    }
+
+    widget.onSubmit(title, value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +36,7 @@ class TransactionForms extends StatelessWidget {
         child: Column(children: [
           TextField(
             controller: titleController,
+            onSubmitted: (_) => _submitForm(),
             decoration: InputDecoration(
               labelText: 'Título',
             ),
@@ -24,19 +44,17 @@ class TransactionForms extends StatelessWidget {
           TextField(
             //onChanged: (newValue) => value = newValue,
             controller: valueController,
+            onSubmitted: (_) => _submitForm(),
             decoration: InputDecoration(
               labelText: 'Valor R\$',
             ),
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Color.fromARGB(255, 119, 21, 136),
             ),
-            onPressed: (){
-              final title = titleController.text;
-              final value = double.tryParse(valueController.text) ?? 0.0;
-              onSubmit(title, value);
-            },
+            onPressed: _submitForm,
             child: Text('Nova despesa'),
           ),
         ]),

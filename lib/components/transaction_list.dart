@@ -26,7 +26,7 @@ class TransactionList extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                     border: Border.all(
-                  color: const Color.fromARGB(255, 119, 21, 136),
+                  color: Theme.of(context).colorScheme.primary,
                   width: 2,
                 )),
                 padding: const EdgeInsets.all(15),
@@ -34,9 +34,9 @@ class TransactionList extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'R\$${tr.value.toStringAsFixed(2)}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 119, 21, 136),
+                      color: Theme.of(context).colorScheme.primary,
                       fontSize: 20,
                     ),
                   ),
@@ -55,7 +55,7 @@ class TransactionList extends StatelessWidget {
                   Text(
                     DateFormat('d MMM y').format(tr.date),
                     style: const TextStyle(
-                      color: Color.fromARGB(255, 116, 116, 116),
+                      color: Color.fromARGB(255, 65, 65, 65),
                     ),
                   ),
                 ],
