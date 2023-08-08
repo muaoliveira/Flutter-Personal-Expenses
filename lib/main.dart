@@ -5,6 +5,7 @@ import './components/transaction_forms.dart';
 import './components/transaction_list.dart';
 import '../models/transaction.dart';
 import 'dart:math';
+import 'dart:ui';
 
 
 main() => runApp(expensesApp());
@@ -15,10 +16,19 @@ class expensesApp extends StatelessWidget {
     final ThemeData tema = ThemeData();
     return MaterialApp(
       home: myHomePage(),
-      theme: tema.copyWith(
+      theme:
+      tema.copyWith(
+        textTheme: Theme.of(context).textTheme.apply(
+          fontFamily: 'Quicksand',
+        ),
         colorScheme: tema.colorScheme.copyWith(
           primary: Colors.purple,
-          secondary: Color.fromARGB(255, 68, 9, 146),
+          secondary: Color.fromARGB(255, 114, 61, 184),
+        ),
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+            
+          ),
         ),
       ),
     );
@@ -73,6 +83,9 @@ class _myHomePageState extends State<myHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        titleTextStyle: TextStyle(
+          fontFamily: 'OpenSans',
+        ),
         centerTitle: true,
         title: const Text('Despesas Pessoais'),
         actions: [
