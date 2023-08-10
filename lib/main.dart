@@ -25,11 +25,6 @@ class expensesApp extends StatelessWidget {
           primary: Colors.purple,
           secondary: Color.fromARGB(255, 114, 61, 184),
         ),
-        appBarTheme: AppBarTheme(
-          textTheme: ThemeData.light().textTheme.copyWith(
-            
-          ),
-        ),
       ),
     );
   }
@@ -42,8 +37,8 @@ class myHomePage extends StatefulWidget {
 
 class _myHomePageState extends State<myHomePage> {
   //String value = "";
-  final _transactions = [
-    Transaction(
+  final List<Transaction> _transactions = [
+    /*Transaction(
       id: 't1',
       title: 'Novo tênis de corrida',
       value: 350.99,
@@ -54,7 +49,7 @@ class _myHomePageState extends State<myHomePage> {
       title: 'Conta de Luz',
       value: 223.69,
       date: DateTime.now(),
-    ),
+    ),*/
   ];
 
   _addTransaction(String title, double value) {
@@ -87,7 +82,13 @@ class _myHomePageState extends State<myHomePage> {
           fontFamily: 'OpenSans',
         ),
         centerTitle: true,
-        title: const Text('Despesas Pessoais'),
+        title: const Text('Despesas Pessoais',
+        style: TextStyle(
+          fontFamily: 'Opensans',
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+        )
+        ),
         actions: [
           IconButton(
             onPressed: () => _openTransactionFormModal(context),

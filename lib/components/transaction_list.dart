@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -12,7 +14,27 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      child: ListView.builder(
+      child: transaction.isEmpty ? Column(
+        children: [
+          SizedBox(
+            height: 25,
+          ),
+          Text(
+            'Nenhuma despesa cadastrada',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          SizedBox(
+            height: 35,
+          ),
+          Container(
+            height: 200,
+            child: Image.asset('assets/images/waiting.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
+      ) 
+      : ListView.builder(
         itemCount: transaction.length,
         itemBuilder: (ctx, index) {
           final tr = transaction[index];
@@ -47,9 +69,10 @@ class TransactionList extends StatelessWidget {
                 children: [
                   Text(
                     tr.title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                      fontFamily: 'OpenSans',
                     ),
                   ),
                   Text(
