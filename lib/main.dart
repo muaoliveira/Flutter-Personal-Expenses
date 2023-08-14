@@ -34,6 +34,7 @@ class myHomePage extends StatefulWidget {
   State<myHomePage> createState() => _myHomePageState();
 }
 
+
 class _myHomePageState extends State<myHomePage> {
   //String value = "";
   final List<Transaction> _transactions = [
@@ -66,7 +67,6 @@ class _myHomePageState extends State<myHomePage> {
       ));
     }).toList();
   }
-
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
