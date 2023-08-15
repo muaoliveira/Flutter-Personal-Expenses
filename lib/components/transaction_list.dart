@@ -4,22 +4,17 @@ import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class TransactionList extends StatefulWidget {
+class TransactionList extends StatelessWidget {
   final List<Transaction> transaction;
 
   //construtor
   TransactionList(this.transaction);
 
   @override
-  State<TransactionList> createState() => _TransactionListState();
-}
-
-class _TransactionListState extends State<TransactionList> {
-  @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      child: widget.transaction.isEmpty
+      child: transaction.isEmpty
           ? Column(
               children: [
                 SizedBox(
@@ -42,9 +37,9 @@ class _TransactionListState extends State<TransactionList> {
               ],
             )
           : ListView.builder(
-              itemCount: widget.transaction.length,
+              itemCount: transaction.length,
               itemBuilder: (ctx, index) {
-                final tr = widget.transaction[index];
+                final tr = transaction[index];
                 return Card(
                   elevation: 5,
                   margin: EdgeInsets.symmetric(
@@ -72,13 +67,10 @@ class _TransactionListState extends State<TransactionList> {
                     ),
                     trailing: IconButton(
                       onPressed: () {
-                        setState(() {
-                          widget.transaction.removeWhere(
-                            (ctx) => ctx.id == tr.id,
-                          );
-                        });
+                        
                       },
-                      icon: Icon(Icons.remove_circle_outlined),
+                      icon: Icon(Icons.delete),
+                      //color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 );

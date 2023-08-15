@@ -22,7 +22,7 @@ class expensesApp extends StatelessWidget {
             ),
         colorScheme: tema.colorScheme.copyWith(
           primary: Colors.purple,
-          secondary: Color.fromARGB(255, 114, 61, 184),
+          secondary: Colors.amber,
         ),
       ),
     );
@@ -38,7 +38,7 @@ class myHomePage extends StatefulWidget {
 class _myHomePageState extends State<myHomePage> {
   //String value = "";
   final List<Transaction> _transactions = [
-    Transaction(
+    /*Transaction(
       id: 't0', 
       title: 'Conta antiga', 
       value: 400.01, 
@@ -55,7 +55,7 @@ class _myHomePageState extends State<myHomePage> {
       title: 'Conta de Luz',
       value: 223.69,
       date: DateTime.now().subtract(Duration(days: 4)),
-    ),
+    ),*/
   ];
 
   List<Transaction> get _recentTransactions{
@@ -67,12 +67,12 @@ class _myHomePageState extends State<myHomePage> {
       ));
     }).toList();
   }
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime dateSelected) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: dateSelected,
     );
     setState(() {
       _transactions.add(newTransaction);
@@ -119,10 +119,11 @@ class _myHomePageState extends State<myHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 134, 95, 184),
         onPressed: () => _openTransactionFormModal(context),
         child: Icon(Icons.add),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
